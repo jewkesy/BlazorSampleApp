@@ -1,8 +1,4 @@
-﻿using BlazorSampleApp.Components;
-using Microsoft.Extensions.DependencyInjection;
-using Telerik.JustMock;
-
-namespace BlazorSampleAppTest.Components
+﻿namespace BlazorSampleAppTest.Components
 {
     public class WeatherForecastTests
     {
