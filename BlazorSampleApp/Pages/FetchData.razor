@@ -16,7 +16,7 @@
 }
 else
 {
-     <ForecastDataTable Forecasts="forecasts" />
+     <ForecastDataTable Forecasts="forecasts" TimeStamp="DateTime.Now" />
 }
 
 @code {
@@ -24,7 +24,24 @@ else
 
     protected override async Task OnInitializedAsync()
     {
-        forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+        //forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+
+        // Set up a timer to update the current time every 2 seconds
+        var timer = new System.Threading.Timer(
+            e =>
+            {
+                InvokeAsync(async () =>
+                {
+                    forecasts = await ForecastService.GetForecastAsync(DateTime.Now);
+
+                    // Call this to force the server to send a new updated view
+                    StateHasChanged();
+                });
+            },
+            null,
+            TimeSpan.Zero,
+            TimeSpan.FromSeconds(5)
+        );
     }
 }
  

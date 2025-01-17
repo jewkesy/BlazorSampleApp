@@ -20,15 +20,25 @@
             </tr>
         }
     </tbody>
+    <tfoot>
+        <tr><td>Last updated: @_currentTime.ToString("HH:mm:ss tt")</td></tr>
+    </tfoot>
 </table>
 
 @code {
     private WeatherForecast[] _forecasts = Array.Empty<WeatherForecast>();
+    private DateTime _currentTime = DateTime.Now;
 
     [Parameter]
     public WeatherForecast[] Forecasts
     {
         get => _forecasts;
         set => _forecasts = value ?? Array.Empty<WeatherForecast>();
+    }
+    [Parameter]
+    public DateTime TimeStamp
+    {
+        get => _currentTime;
+        set => _currentTime = value;
     }
 }

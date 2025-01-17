@@ -19,6 +19,7 @@ namespace BlazorSampleAppTest.Components
             ctx.Services.AddSingleton<IWeatherForecastService>(weatherForecastServiceMock);
 
             var cut = ctx.RenderComponent<FetchData>();
+            cut.WaitForElement(".forcast-data-table");
             var actualForcastDataTable = cut.FindComponent<ForecastDataTable>();
 
             var expectedDataTable = ctx.RenderComponent<ForecastDataTable>((nameof(ForecastDataTable.Forecasts), forecasts));
@@ -38,6 +39,7 @@ namespace BlazorSampleAppTest.Components
             ctx.Services.AddSingleton<IWeatherForecastService>(weatherForecastServiceMock);
 
             var cut = ctx.RenderComponent<FetchData>();
+            cut.WaitForElement(".forcast-data-table");
             var actualForcastDataTable = cut.FindComponent<ForecastDataTable>();
 
             var expectedDataTable = ctx.RenderComponent<ForecastDataTable>((nameof(ForecastDataTable.Forecasts), forecasts));
