@@ -1,9 +1,11 @@
 using BlazorSampleApp.Data;
+using BlazorSampleApp.Hubs;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddRazorPages();
+builder.Services.AddSignalR();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<IWeatherForecastService, WeatherForecastService>();
 
@@ -25,5 +27,6 @@ app.UseRouting();
 
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
+app.MapHub<ChatHub>("/chatHub");
 
 app.Run();
